@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Ghorer Bazar design tokens (reference layout ~1200–1400px content) */
+@theme {
+  /* Page & text */
+  --color-page: #fdfcf8;
+  --color-foreground: #1a1a1a;
+  --color-muted-foreground: #5c5c5c;
+  /* Brand */
+  --color-accent: #ff8c00;
+  --color-nav: #00211d;
+  --color-badge: #e41e26;
+  /* Surfaces */
+  --color-muted: #f5f5f5;
+  --color-card: #ffffff;
+  --color-border: #e8e8e6;
+  /* Header thin top bar */
+  --color-header-strip: #2d2d2d;
+  /* Layout */
+  --max-width-site: 1320px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* =========================
+   BASE
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-page text-foreground antialiased;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* =========================
+   FIXED-WIDTH CONTENT
+========================= */
+.container-site {
+  @apply mx-auto w-full px-4 sm:px-6;
+  max-width: var(--max-width-site);
+}
+
+/* =========================
+   COMPONENTS (tokens only)
+========================= */
+.btn-primary {
+  @apply rounded-md bg-accent px-4 py-2 font-medium text-white transition hover:opacity-90;
+}
+
+.navbar-categories {
+  @apply bg-nav text-white;
+}
+
+.category-card {
+  @apply cursor-pointer rounded-xl bg-card p-4 shadow-sm transition hover:shadow-md;
+}
+
+.product-card {
+  @apply rounded-xl bg-card p-4 shadow transition hover:shadow-lg;
+}
+
+.section-title {
+  @apply mb-6 text-center text-xl font-semibold text-foreground;
 }
