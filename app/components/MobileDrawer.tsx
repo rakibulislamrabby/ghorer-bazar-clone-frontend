@@ -68,7 +68,7 @@ export function MobileDrawer() {
             <div>
               <p className="text-base font-bold">Hello there!</p>
               <Link
-                href="/sign-in"
+                href="/login"
                 className="text-sm text-white/95 underline-offset-2 hover:underline"
                 onClick={closeMenu}
               >

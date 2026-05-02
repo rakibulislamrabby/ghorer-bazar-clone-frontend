@@ -148,7 +148,7 @@ export function Header() {
             <MobileIconLink href="/track" label="Track Order">
               <IconTrackOrder className="h-[22px] w-[22px]" />
             </MobileIconLink>
-            <MobileIconLink href="/sign-in" label="Sign In">
+            <MobileIconLink href="/login" label="Sign In">
               <IconUser className="h-[22px] w-[22px]" />
             </MobileIconLink>
             <MobileIconLink href="/wishlist" label="Wishlist">
@@ -194,7 +194,7 @@ export function Header() {
             aria-label="Account and cart"
           >
             <HeaderNavItem href="/track" label="Track Order" icon={<IconTrackOrder className="h-6 w-6" />} />
-            <HeaderNavItem href="/sign-in" label="Sign In" icon={<IconUser className="h-6 w-6" />} />
+            <HeaderNavItem href="/login" label="Sign In" icon={<IconUser className="h-6 w-6" />} />
             <HeaderNavItem href="/wishlist" label="Wishlist" icon={<IconHeart className="h-6 w-6" />} />
             <HeaderNavItem href="/cart" label="Cart" icon={<IconCart className="h-6 w-6" />} badge={cartCount} />
             <MoreMenuDropdown />
