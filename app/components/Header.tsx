@@ -1,5 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { useMobileMenu } from "./MobileMenuContext";
+import { MoreMenuDropdown } from "./MoreMenuDropdown";
+
+function IconHamburger({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+      <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 function IconTrackOrder({ className }: { className?: string }) {
   return (
@@ -34,14 +46,6 @@ function IconCart({ className }: { className?: string }) {
       <path d="M4 6h2l1.5 12h12L21 8H8" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="10" cy="20" r="1" fill="currentColor" />
       <circle cx="18" cy="20" r="1" fill="currentColor" />
-    </svg>
-  );
-}
-
-function IconMenu({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
-      <path d="M4 7h16M4 12h11M4 17h16" strokeLinecap="round" />
     </svg>
   );
 }
@@ -81,24 +85,96 @@ function HeaderNavItem({ href, label, icon, badge }: NavItemProps) {
   );
 }
 
+function MobileIconLink({
+  href,
+  children,
+  badge,
+  label,
+}: {
+  href: string;
+  children: ReactNode;
+  badge?: number;
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      title={label}
+      aria-label={label}
+      className="relative flex h-10 w-9 shrink-0 items-center justify-center text-foreground active:opacity-70 sm:w-10"
+    >
+      {children}
+      {badge !== undefined && badge > 0 ? (
+        <span className="absolute right-0 top-0.5 flex h-[16px] min-w-[16px] translate-x-1/2 items-center justify-center rounded-full bg-accent px-0.5 text-[9px] font-bold leading-none text-white">
+          {badge > 99 ? "99+" : badge}
+        </span>
+      ) : null}
+    </a>
+  );
+}
+
 export function Header() {
+  const { openMenu } = useMobileMenu();
+  const cartCount = 1;
+
   return (
     <header className="w-full bg-card">
-      <div className="h-1 w-full bg-header-strip" aria-hidden />
+      <div className="hidden h-1 w-full bg-header-strip lg:block" aria-hidden />
+
       <div className="border-b border-border">
-        <div className="container-site flex flex-col gap-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-          <a href="/" className="relative block h-10 w-[148px] shrink-0 sm:h-11 sm:w-[164px]">
+        {/* Mobile / tablet header */}
+        <div className="container-site flex items-center gap-2 py-2.5 lg:hidden">
+          <button
+            type="button"
+            onClick={openMenu}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-foreground active:bg-muted"
+            aria-label="Open menu"
+          >
+            <IconHamburger className="h-6 w-6" />
+          </button>
+
+          <a href="/" className="flex min-w-0 flex-1 justify-center" title="Ghorer Bazar — home">
             <Image
               src="/assets/logo/logo.png"
               alt="Ghorer Bazar"
-              fill
-              sizes="164px"
-              className="object-contain object-left"
+              width={3039}
+              height={1220}
+              className="h-9 w-auto max-w-[min(100%,200px)] object-contain object-center"
               priority
             />
           </a>
 
-          <div className="relative min-w-0 flex-1 sm:mx-2 sm:max-w-xl lg:max-w-2xl">
+          <nav className="flex shrink-0 items-center gap-0 max-[380px]:gap-0" aria-label="Quick links">
+            <MobileIconLink href="/track" label="Track Order">
+              <IconTrackOrder className="h-[22px] w-[22px]" />
+            </MobileIconLink>
+            <MobileIconLink href="/sign-in" label="Sign In">
+              <IconUser className="h-[22px] w-[22px]" />
+            </MobileIconLink>
+            <MobileIconLink href="/wishlist" label="Wishlist">
+              <IconHeart className="h-[22px] w-[22px]" />
+            </MobileIconLink>
+            <MobileIconLink href="/cart" label="Cart" badge={cartCount}>
+              <IconCart className="h-[22px] w-[22px]" />
+            </MobileIconLink>
+            <MoreMenuDropdown compact />
+          </nav>
+        </div>
+
+        {/* Desktop header */}
+        <div className="container-site hidden flex-col gap-4 py-3 lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+          <a href="/" className="inline-flex shrink-0" title="Ghorer Bazar — home">
+            <Image
+              src="/assets/logo/logo.png"
+              alt="Ghorer Bazar"
+              width={3039}
+              height={1220}
+              className="h-10 w-auto sm:h-11"
+              priority
+            />
+          </a>
+
+          <div className="relative min-w-0 flex-1 lg:mx-2 lg:max-w-xl xl:max-w-2xl">
             <label htmlFor="site-search" className="sr-only">
               Search products
             </label>
@@ -114,14 +190,14 @@ export function Header() {
           </div>
 
           <nav
-            className="flex flex-wrap items-start justify-center gap-5 sm:justify-end sm:gap-6 md:gap-7"
+            className="flex flex-wrap items-start justify-center gap-5 lg:justify-end lg:gap-6 xl:gap-7"
             aria-label="Account and cart"
           >
             <HeaderNavItem href="/track" label="Track Order" icon={<IconTrackOrder className="h-6 w-6" />} />
             <HeaderNavItem href="/sign-in" label="Sign In" icon={<IconUser className="h-6 w-6" />} />
             <HeaderNavItem href="/wishlist" label="Wishlist" icon={<IconHeart className="h-6 w-6" />} />
-            <HeaderNavItem href="/cart" label="Cart" icon={<IconCart className="h-6 w-6" />} badge={1} />
-            <HeaderNavItem href="#menu" label="More" icon={<IconMenu className="h-6 w-6" />} />
+            <HeaderNavItem href="/cart" label="Cart" icon={<IconCart className="h-6 w-6" />} badge={cartCount} />
+            <MoreMenuDropdown />
           </nav>
         </div>
       </div>

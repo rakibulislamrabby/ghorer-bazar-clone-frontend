@@ -1,29 +1,18 @@
-const categories = [
-  "Oil & Ghee",
-  "Honey",
-  "Dates",
-  "Spices",
-  "Nuts & Seeds",
-  "Beverage",
-  "Rice",
-  "Flours & Lentils",
-  "Certified",
-  "Pickle",
-] as const;
+import { SITE_CATEGORIES, categoryHref } from "@/lib/site-categories";
 
 export function NavbarCategories() {
   return (
     <nav
-      className="navbar-categories w-full"
+      className="navbar-categories hidden w-full lg:block"
       aria-label="Product categories"
     >
       <div className="container-site">
-        <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 py-2.5 text-sm sm:justify-between sm:gap-x-0">
-          {categories.map((name) => (
+        <ul className="flex flex-wrap items-center justify-center gap-x-1 gap-y-2 py-2.5 text-sm lg:justify-between lg:gap-x-0">
+          {SITE_CATEGORIES.map((name) => (
             <li key={name}>
               <a
-                href={`/category/${encodeURIComponent(name.toLowerCase().replace(/\s+/g, "-"))}`}
-                className="block whitespace-nowrap px-2 py-1 transition hover:text-accent sm:px-1"
+                href={categoryHref(name)}
+                className="block whitespace-nowrap px-2 py-1 transition hover:text-accent lg:px-1"
               >
                 {name}
               </a>
