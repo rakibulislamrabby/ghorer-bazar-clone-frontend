@@ -6,6 +6,7 @@ import { MobileBottomNav } from "./components/MobileBottomNav";
 import { MobileDrawer } from "./components/MobileDrawer";
 import { MobileMenuProvider } from "./components/MobileMenuContext";
 import { NavbarCategories } from "./components/NavbarCategories";
+import { Providers } from "./providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -35,16 +36,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <MobileMenuProvider>
-          <div className="flex min-h-screen flex-col bg-page pb-[calc(4.25rem+env(safe-area-inset-bottom,0px))] lg:pb-0">
-            <Header />
-            <NavbarCategories />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <MobileDrawer />
-            <MobileBottomNav />
-          </div>
-        </MobileMenuProvider>
+        <Providers>
+          <MobileMenuProvider>
+            <div className="flex min-h-screen flex-col bg-page pb-[calc(4.25rem+env(safe-area-inset-bottom,0px))] lg:pb-0">
+              <Header />
+              <NavbarCategories />
+              <main className="flex-1">{children}</main>
+              <Footer />
+              <MobileDrawer />
+              <MobileBottomNav />
+            </div>
+          </MobileMenuProvider>
+        </Providers>
       </body>
     </html>
   );

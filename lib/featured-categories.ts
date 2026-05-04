@@ -1,8 +1,8 @@
-import { categoryHref } from "./site-categories";
+import { categoryCollectionHref, categoryHref } from "./site-categories";
 
 /** Order matches homepage featured carousel; images live under `public/assets/categories-icon/` */
 export const FEATURED_CATEGORY_ITEMS = [
-  { label: "Oil & Ghee", image: "/assets/categories-icon/ghee.png", href: categoryHref("Oil & Ghee") },
+  { label: "Oil & Ghee", image: "/assets/categories-icon/ghee.png", href: categoryCollectionHref("Oil & Ghee") },
   { label: "Organic", image: "/assets/categories-icon/organic.png", href: "/category/organic" },
   { label: "Honey", image: "/assets/categories-icon/honey.png", href: categoryHref("Honey") },
   { label: "Dates", image: "/assets/categories-icon/dates.png", href: categoryHref("Dates") },

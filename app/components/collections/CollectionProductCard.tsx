@@ -1,0 +1,62 @@
+import Image from "next/image";
+import Link from "next/link";
+import type { Product } from "@/lib/catalog-types";
+import { formatBdt, salePrice, savePercent } from "@/lib/format-bdt";
+
+type Props = { product: Product };
+
+export function CollectionProductCard({ product }: Props) {
+  const img = product.images[0] ?? "/assets/logo/logo.png";
+  const pay = salePrice(product);
+  const list = product.compareAtPrice;
+  const showStrike = list != null && list > pay;
+  const pct = savePercent(product);
+
+  return (
+    <article className="flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition hover:shadow-md">
+      <div className="relative aspect-square w-full bg-white">
+        {product.isBestSelling ? (
+          <span className="absolute left-2 top-2 z-10 rounded bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+            Best Selling
+          </span>
+        ) : null}
+        {pct != null && pct > 0 ? (
+          <span className="absolute right-2 top-2 z-10 rounded bg-green-600 px-2 py-0.5 text-[10px] font-bold text-white shadow">
+            Save {pct}%
+          </span>
+        ) : null}
+        <Link href={`/product/${product.slug}`} className="relative block h-full w-full">
+          <Image src={img} alt={product.name} fill className="object-contain p-4" sizes="(max-width:640px) 50vw, 25vw" />
+        </Link>
+      </div>
+
+      <div className="flex flex-1 flex-col gap-2 p-3 pt-2">
+        <Link
+          href={`/product/${product.slug}`}
+          className="line-clamp-2 min-h-[2.5rem] text-left text-sm font-semibold leading-snug text-foreground hover:text-accent"
+        >
+          {product.name}
+        </Link>
+
+        <div className="mt-auto flex flex-wrap items-baseline gap-2">
+          <span className="text-base font-bold text-accent">{formatBdt(pay)}</span>
+          {showStrike ? (
+            <span className="text-sm text-muted-foreground line-through">{formatBdt(list)}</span>
+          ) : null}
+        </div>
+
+        <button
+          type="button"
+          className="mt-1 flex w-full items-center justify-center gap-2 rounded-md border-2 border-accent py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-white"
+        >
+          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+            <path d="M4 6h16l-2 12H6L4 6zM4 6L3 3H1" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="9" cy="20" r="1" fill="currentColor" />
+            <circle cx="18" cy="20" r="1" fill="currentColor" />
+          </svg>
+          Add To Cart
+        </button>
+      </div>
+    </article>
+  );
+}

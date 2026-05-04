@@ -1,0 +1,829 @@
+{
+  "version": "1.0",
+  "currencyDefault": "BDT",
+
+  "categories": [
+    {
+      "id": "cat_1",
+      "slug": "honey",
+      "name": "Honey",
+      "description": "Pure & organic honey collections."
+    },
+    {
+      "id": "cat_2",
+      "slug": "oil-ghee",
+      "name": "Oil & Ghee",
+      "description": "Cooking oils and traditional ghee."
+    },
+    {
+      "id": "cat_3",
+      "slug": "spices",
+      "name": "Spices",
+      "description": "Whole and ground spices."
+    },
+    {
+      "id": "cat_4",
+      "slug": "dates",
+      "name": "Dates",
+      "description": "Premium dates and dry fruits."
+    }
+  ],
+
+  "subCategories": [
+    {
+      "id": "sub_1",
+      "categoryId": "cat_1",
+      "slug": "raw-honey",
+      "name": "Raw Honey"
+    },
+    {
+      "id": "sub_2",
+      "categoryId": "cat_1",
+      "slug": "organic-honey",
+      "name": "Organic Honey"
+    },
+    {
+      "id": "sub_3",
+      "categoryId": "cat_2",
+      "slug": "mustard-oil",
+      "name": "Mustard Oil"
+    },
+    {
+      "id": "sub_4",
+      "categoryId": "cat_3",
+      "slug": "whole-spices",
+      "name": "Whole Spices"
+    },
+    {
+      "id": "sub_5",
+      "categoryId": "cat_2",
+      "slug": "ghee",
+      "name": "Ghee"
+    },
+    {
+      "id": "sub_6",
+      "categoryId": "cat_2",
+      "slug": "coconut-oil",
+      "name": "Coconut Oil"
+    },
+    {
+      "id": "sub_7",
+      "categoryId": "cat_2",
+      "slug": "olive-oil",
+      "name": "Olive Oil"
+    }
+  ],
+
+  "collectionFilters": {
+    "oil-ghee": {
+      "types": ["Cooking Oil", "Coconut Oil", "Olive Oil", "Ghee", "Mustard Oil"],
+      "brands": ["Applied Nutrition", "Ceylon Naturals", "Ghorer Bazar", "Glarvest", "Olitalla", "Palermo"]
+    }
+  },
+
+  "products": [
+    {
+      "id": "prod_1",
+      "name": "Sundarban Organic Honey",
+      "slug": "sundarban-organic-honey",
+      "shortDescription": "Forest-sourced organic honey with lab-tested purity.",
+      "description": "100% pure natural honey collected from Sundarban forest. Cold-filtered, no added sugar. Ideal for daily wellness and natural sweetness.",
+
+      "categoryId": "cat_1",
+      "subCategoryId": "sub_2",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": [
+        "/products/honey1.png",
+        "/products/honey2.png"
+      ],
+
+      "price": 850,
+      "compareAtPrice": 950,
+      "discountPrice": 750,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 50,
+      "sku": "HONEY-SUND-001",
+      "barcode": "8941012345678",
+      "allowBackorder": false,
+      "lowStockThreshold": 10,
+
+      "ratings": {
+        "average": 4.5,
+        "count": 120,
+        "histogram": { "5": 78, "4": 28, "3": 10, "2": 3, "1": 1 }
+      },
+
+      "tags": ["organic", "natural", "best-selling", "honey"],
+
+      "isFeatured": true,
+      "isBestSelling": true,
+      "isNew": false,
+      "isOffered": true,
+
+      "variants": [
+        {
+          "id": "var_1_250",
+          "sku": "HONEY-SUND-250",
+          "label": "250g",
+          "size": "250g",
+          "price": 450,
+          "compareAtPrice": 500,
+          "stock": 30,
+          "images": ["/products/honey1.png"]
+        },
+        {
+          "id": "var_1_500",
+          "sku": "HONEY-SUND-500",
+          "label": "500g",
+          "size": "500g",
+          "price": 850,
+          "compareAtPrice": 950,
+          "stock": 20,
+          "images": ["/products/honey1.png", "/products/honey2.png"]
+        }
+      ],
+
+      "specifications": [
+        { "name": "Origin", "value": "Sundarban, Bangladesh" },
+        { "name": "Processing", "value": "Cold-filtered" },
+        { "name": "Shelf life", "value": "24 months from packing" },
+        { "name": "Storage", "value": "Cool, dry place; avoid direct sunlight" }
+      ],
+
+      "shipping": {
+        "weightKg": 0.55,
+        "dimensionsCm": { "length": 8, "width": 8, "height": 14 },
+        "freeShippingAbove": 1500,
+        "shipsWithinDays": 2
+      },
+
+      "seo": {
+        "metaTitle": "Sundarban Organic Honey | Ghorer Bazar",
+        "metaDescription": "Buy certified organic Sundarban honey. Pure, lab-tested, multiple sizes. Fast delivery across Bangladesh.",
+        "canonicalSlug": "sundarban-organic-honey"
+      },
+
+      "relatedProductIds": ["prod_2", "prod_4"],
+
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "updatedAt": "2026-01-10T12:30:00.000Z"
+    },
+
+    {
+      "id": "prod_2",
+      "name": "Mustard Oil Cold Pressed",
+      "slug": "mustard-oil-cold-pressed-1l",
+      "shortDescription": "Traditional cold-pressed mustard oil for authentic taste.",
+      "description": "Single-pressed yellow mustard seeds. Rich aroma, ideal for pickles, frying, and Bengali dishes. No chemical refining.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_3",
+      "filterType": "Mustard Oil",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/assets/products/oilandghee/mushteroil1ltr.jpg"],
+
+      "price": 420,
+      "compareAtPrice": null,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 120,
+      "sku": "OIL-MUST-1L",
+      "barcode": "8941012345689",
+      "allowBackorder": true,
+      "lowStockThreshold": 15,
+
+      "ratings": {
+        "average": 4.7,
+        "count": 89,
+        "histogram": { "5": 62, "4": 20, "3": 5, "2": 1, "1": 1 }
+      },
+
+      "tags": ["cold-pressed", "cooking-oil", "traditional"],
+
+      "isFeatured": true,
+      "isBestSelling": false,
+      "isNew": true,
+      "isOffered": false,
+
+      "variants": [
+        {
+          "id": "var_2_500",
+          "sku": "OIL-MUST-500",
+          "label": "500ml",
+          "size": "500ml",
+          "price": 220,
+          "compareAtPrice": null,
+          "stock": 60,
+          "images": ["/products/mustard-oil1.png"]
+        },
+        {
+          "id": "var_2_1l",
+          "sku": "OIL-MUST-1L",
+          "label": "1L",
+          "size": "1L",
+          "price": 420,
+          "compareAtPrice": null,
+          "stock": 60,
+          "images": ["/products/mustard-oil1.png"]
+        }
+      ],
+
+      "specifications": [
+        { "name": "Extraction", "value": "Cold pressed (single)" },
+        { "name": "Packaging", "value": "Food-grade PET bottle" }
+      ],
+
+      "shipping": {
+        "weightKg": 0.95,
+        "dimensionsCm": { "length": 9, "width": 9, "height": 26 },
+        "freeShippingAbove": 1500,
+        "shipsWithinDays": 2
+      },
+
+      "seo": {
+        "metaTitle": "Cold Pressed Mustard Oil 1L | Ghorer Bazar",
+        "metaDescription": "Authentic cold-pressed mustard oil for cooking and pickles. Fast delivery.",
+        "canonicalSlug": "mustard-oil-cold-pressed-1l"
+      },
+
+      "relatedProductIds": ["prod_1"],
+
+      "createdAt": "2026-01-05T10:00:00.000Z",
+      "updatedAt": "2026-01-12T09:00:00.000Z"
+    },
+
+    {
+      "id": "prod_3",
+      "name": "Whole Black Cumin (Kalo Jeera)",
+      "slug": "whole-black-cumin-200g",
+      "shortDescription": "Aromatic whole black cumin for rice and curries.",
+      "description": "Sourced from trusted growers. Whole seeds retain essential oils. Popular for biriyani, lentil dishes, and medicinal teas.",
+
+      "categoryId": "cat_3",
+      "subCategoryId": "sub_4",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/products/cumin1.png"],
+
+      "price": 185,
+      "compareAtPrice": 220,
+      "discountPrice": 165,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 200,
+      "sku": "SPC-CUMN-200",
+      "barcode": "8941012345690",
+      "allowBackorder": false,
+      "lowStockThreshold": 25,
+
+      "ratings": {
+        "average": 4.3,
+        "count": 54,
+        "histogram": { "5": 30, "4": 18, "3": 5, "2": 1, "1": 0 }
+      },
+
+      "tags": ["spices", "whole", "offered-items"],
+
+      "isFeatured": false,
+      "isBestSelling": true,
+      "isNew": false,
+      "isOffered": true,
+
+      "variants": [],
+
+      "specifications": [
+        { "name": "Net weight", "value": "200g" },
+        { "name": "Pack type", "value": "Resealable pouch" }
+      ],
+
+      "shipping": {
+        "weightKg": 0.22,
+        "dimensionsCm": { "length": 16, "width": 12, "height": 4 },
+        "freeShippingAbove": 1500,
+        "shipsWithinDays": 2
+      },
+
+      "seo": {
+        "metaTitle": "Whole Black Cumin 200g | Ghorer Bazar",
+        "metaDescription": "Premium whole black cumin for everyday cooking. Offer price available.",
+        "canonicalSlug": "whole-black-cumin-200g"
+      },
+
+      "relatedProductIds": ["prod_2"],
+
+      "createdAt": "2026-01-08T14:00:00.000Z",
+      "updatedAt": "2026-01-11T11:00:00.000Z"
+    },
+
+    {
+      "id": "prod_4",
+      "name": "Premium Ajwa Dates",
+      "slug": "premium-ajwa-dates-500g",
+      "shortDescription": "Soft Ajwa dates — naturally sweet, high fibre.",
+      "description": "Sorted large Ajwa dates with consistent moisture and sweetness. Suitable for gifting and daily nutrition.",
+
+      "categoryId": "cat_4",
+      "subCategoryId": null,
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/products/dates1.png"],
+
+      "price": 1100,
+      "compareAtPrice": null,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 35,
+      "sku": "DAT-AJWA-500",
+      "barcode": "8941012345691",
+      "allowBackorder": false,
+      "lowStockThreshold": 8,
+
+      "ratings": {
+        "average": 4.8,
+        "count": 210,
+        "histogram": { "5": 165, "4": 35, "3": 8, "2": 2, "1": 0 }
+      },
+
+      "tags": ["dates", "dry-fruits", "premium"],
+
+      "isFeatured": true,
+      "isBestSelling": true,
+      "isNew": false,
+      "isOffered": false,
+
+      "variants": [
+        {
+          "id": "var_4_250",
+          "sku": "DAT-AJWA-250",
+          "label": "250g",
+          "size": "250g",
+          "price": 580,
+          "compareAtPrice": null,
+          "stock": 18,
+          "images": ["/products/dates1.png"]
+        },
+        {
+          "id": "var_4_500",
+          "sku": "DAT-AJWA-500",
+          "label": "500g",
+          "size": "500g",
+          "price": 1100,
+          "compareAtPrice": null,
+          "stock": 17,
+          "images": ["/products/dates1.png"]
+        }
+      ],
+
+      "specifications": [
+        { "name": "Variety", "value": "Ajwa" },
+        { "name": "Country of packing", "value": "Bangladesh" }
+      ],
+
+      "shipping": {
+        "weightKg": 0.52,
+        "dimensionsCm": { "length": 22, "width": 15, "height": 6 },
+        "freeShippingAbove": 1500,
+        "shipsWithinDays": 2
+      },
+
+      "seo": {
+        "metaTitle": "Premium Ajwa Dates 500g | Ghorer Bazar",
+        "metaDescription": "Buy premium Ajwa dates online. Fast delivery, trusted quality.",
+        "canonicalSlug": "premium-ajwa-dates-500g"
+      },
+
+      "relatedProductIds": ["prod_1"],
+
+      "createdAt": "2026-01-02T08:00:00.000Z",
+      "updatedAt": "2026-01-09T16:45:00.000Z"
+    },
+
+    {
+      "id": "prod_501",
+      "name": "Deshi Mustard Oil 5 Liter",
+      "slug": "deshi-mustard-oil-5-liter",
+      "shortDescription": "Traditional deshi mustard oil in family-size pack.",
+      "description": "Cold-pressed style deshi mustard oil. Rich aroma for pickles, fish curry, and everyday cooking.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_3",
+      "filterType": "Mustard Oil",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/assets/products/oilandghee/mashteroil5ltr.jpg"],
+
+      "price": 1550,
+      "compareAtPrice": 1800,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 40,
+      "sku": "OIL-MUST-5L",
+      "allowBackorder": false,
+      "lowStockThreshold": 8,
+
+      "ratings": { "average": 4.6, "count": 92 },
+
+      "tags": ["mustard-oil", "best-selling"],
+
+      "isFeatured": false,
+      "isBestSelling": true,
+      "isNew": false,
+      "isOffered": false,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_502",
+      "name": "Gawa Ghee 1kg",
+      "slug": "gawa-ghee-1kg",
+      "shortDescription": "Aromatic cow ghee for cooking and sweets.",
+      "description": "Premium clarified ghee with traditional aroma. Ideal for biriyani, halwa, and daily cooking.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_5",
+      "filterType": "Ghee",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/assets/products/oilandghee/ghee1kg.jpg"],
+
+      "price": 1700,
+      "compareAtPrice": 1800,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 55,
+      "sku": "GHE-GAWA-1KG",
+      "allowBackorder": false,
+      "lowStockThreshold": 10,
+
+      "ratings": { "average": 4.8, "count": 140 },
+
+      "tags": ["ghee", "best-selling"],
+
+      "isFeatured": true,
+      "isBestSelling": true,
+      "isNew": false,
+      "isOffered": true,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_503",
+      "name": "Deshi Mustard Oil 2 Liter",
+      "slug": "deshi-mustard-oil-2-liter",
+      "shortDescription": "Deshi mustard oil — medium pack for weekly use.",
+      "description": "Authentic taste for Bengali dishes. Food-grade bottle, sealed for freshness.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_3",
+      "filterType": "Mustard Oil",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/assets/products/oilandghee/mushteroil2kg.jpg"],
+
+      "price": 620,
+      "compareAtPrice": null,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 80,
+      "sku": "OIL-MUST-2L",
+      "allowBackorder": true,
+      "lowStockThreshold": 12,
+
+      "ratings": { "average": 4.4, "count": 67 },
+
+      "tags": ["mustard-oil"],
+
+      "isFeatured": false,
+      "isBestSelling": false,
+      "isNew": false,
+      "isOffered": false,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_504",
+      "name": "Organic Extra Virgin Coconut Oil 1 Liter",
+      "slug": "organic-extra-virgin-coconut-oil-1-liter",
+      "shortDescription": "Cold-processed extra virgin coconut oil.",
+      "description": "Suitable for light cooking, hair, and skin care. Natural coconut aroma.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_6",
+      "filterType": "Coconut Oil",
+
+      "brand": "Ceylon Naturals",
+      "brandSlug": "ceylon-naturals",
+
+      "images": ["/assets/products/oilandghee/coconutoil.jpg"],
+
+      "price": 2030,
+      "compareAtPrice": null,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 25,
+      "sku": "OIL-COCO-1L",
+      "allowBackorder": false,
+      "lowStockThreshold": 5,
+
+      "ratings": { "average": 4.5, "count": 41 },
+
+      "tags": ["coconut-oil", "organic"],
+
+      "isFeatured": true,
+      "isBestSelling": false,
+      "isNew": true,
+      "isOffered": false,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_505",
+      "name": "Deshi Mustard Oil 1 Liter",
+      "slug": "deshi-mustard-oil-1-liter",
+      "shortDescription": "Everyday deshi mustard oil 1 liter.",
+      "description": "Trusted quality for frying and traditional recipes.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_3",
+      "filterType": "Mustard Oil",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/assets/products/oilandghee/mushteroil1ltr.jpg"],
+
+      "price": 350,
+      "compareAtPrice": null,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 150,
+      "sku": "OIL-MUST-1L-DB",
+      "allowBackorder": true,
+      "lowStockThreshold": 20,
+
+      "ratings": { "average": 4.5, "count": 210 },
+
+      "tags": ["mustard-oil"],
+
+      "isFeatured": false,
+      "isBestSelling": true,
+      "isNew": false,
+      "isOffered": false,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_506",
+      "name": "Pure Ghee 500ml",
+      "slug": "pure-ghee-500ml",
+      "shortDescription": "Pure cow ghee in convenient 500ml jar.",
+      "description": "Clarified butter with golden color. Perfect for tadka and desserts.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_5",
+      "filterType": "Ghee",
+
+      "brand": "Ghorer Bazar",
+      "brandSlug": "ghorer-bazar",
+
+      "images": ["/assets/products/oilandghee/ghee500ml.jpg"],
+
+      "price": 890,
+      "compareAtPrice": 950,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 70,
+      "sku": "GHE-PURE-500",
+      "allowBackorder": false,
+      "lowStockThreshold": 10,
+
+      "ratings": { "average": 4.6, "count": 88 },
+
+      "tags": ["ghee"],
+
+      "isFeatured": false,
+      "isBestSelling": false,
+      "isNew": false,
+      "isOffered": true,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_507",
+      "name": "Pure Ghee 250ml",
+      "slug": "pure-ghee-250ml",
+      "shortDescription": "Small pack pure ghee for trial and travel.",
+      "description": "Same quality pure ghee in a compact bottle.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_5",
+      "filterType": "Ghee",
+
+      "brand": "Applied Nutrition",
+      "brandSlug": "applied-nutrition",
+
+      "images": ["/assets/products/oilandghee/ghee250ml.jpg"],
+
+      "price": 480,
+      "compareAtPrice": null,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 100,
+      "sku": "GHE-PURE-250",
+      "allowBackorder": true,
+      "lowStockThreshold": 15,
+
+      "ratings": { "average": 4.3, "count": 34 },
+
+      "tags": ["ghee"],
+
+      "isFeatured": false,
+      "isBestSelling": false,
+      "isNew": true,
+      "isOffered": false,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_508",
+      "name": "Pure Ghee 400g",
+      "slug": "pure-ghee-400g",
+      "shortDescription": "Pure ghee 400g pack.",
+      "description": "Balanced size for weekly family use.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_5",
+      "filterType": "Ghee",
+
+      "brand": "Palermo",
+      "brandSlug": "palermo",
+
+      "images": ["/assets/products/oilandghee/ghee400gm.jpg"],
+
+      "price": 720,
+      "compareAtPrice": 780,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 45,
+      "sku": "GHE-PURE-400",
+      "allowBackorder": false,
+      "lowStockThreshold": 8,
+
+      "ratings": { "average": 4.4, "count": 22 },
+
+      "tags": ["ghee"],
+
+      "isFeatured": false,
+      "isBestSelling": false,
+      "isNew": false,
+      "isOffered": true,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_509",
+      "name": "Organic Extra Virgin Coconut Oil 500ml",
+      "slug": "organic-extra-virgin-coconut-oil-500ml",
+      "shortDescription": "Half-liter organic coconut oil.",
+      "description": "Extra virgin quality for light sauté and wellness routines.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_6",
+      "filterType": "Coconut Oil",
+
+      "brand": "Olitalla",
+      "brandSlug": "olitalla",
+
+      "images": ["/assets/products/oilandghee/coconutoil500ml.jpg"],
+
+      "price": 1120,
+      "compareAtPrice": null,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 30,
+      "sku": "OIL-COCO-500",
+      "allowBackorder": false,
+      "lowStockThreshold": 6,
+
+      "ratings": { "average": 4.5, "count": 19 },
+
+      "tags": ["coconut-oil"],
+
+      "isFeatured": false,
+      "isBestSelling": false,
+      "isNew": false,
+      "isOffered": false,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    },
+    {
+      "id": "prod_510",
+      "name": "Olive Oil 1 Liter",
+      "slug": "olive-oil-1-liter",
+      "shortDescription": "Imported style olive oil for salads and light cooking.",
+      "description": "Mild flavor profile suitable for Mediterranean recipes and dressings.",
+
+      "categoryId": "cat_2",
+      "subCategoryId": "sub_7",
+      "filterType": "Olive Oil",
+
+      "brand": "Glarvest",
+      "brandSlug": "glarvest",
+
+      "images": ["/assets/products/oilandghee/olivoil1ltr.jpg"],
+
+      "price": 1450,
+      "compareAtPrice": 1650,
+      "discountPrice": null,
+      "currency": "BDT",
+      "vatPercent": 0,
+
+      "stock": 28,
+      "sku": "OIL-OLIV-1L",
+      "allowBackorder": true,
+      "lowStockThreshold": 5,
+
+      "ratings": { "average": 4.2, "count": 15 },
+
+      "tags": ["olive-oil"],
+
+      "isFeatured": false,
+      "isBestSelling": false,
+      "isNew": false,
+      "isOffered": true,
+
+      "variants": [],
+
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "updatedAt": "2026-02-01T00:00:00.000Z"
+    }
+  ]
+}
