@@ -24,3 +24,9 @@ export const CATEGORY_HAS_SUBMENU = new Set<string>([
 export function categoryHref(name: string) {
   return `/category/${encodeURIComponent(name.toLowerCase().replace(/\s+/g, "-"))}`;
 }
+
+/** Collection PLP routes where implemented */
+export function categoryCollectionHref(name: string) {
+  if (name === "Oil & Ghee") return "/collections/oil-ghee";
+  return categoryHref(name);
+}

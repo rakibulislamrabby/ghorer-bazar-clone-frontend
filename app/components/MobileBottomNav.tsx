@@ -90,7 +90,7 @@ export function MobileBottomNav() {
           <span className="text-[10px] font-semibold uppercase tracking-wide">Search</span>
         </Link>
 
-        <Link href="/sign-in" className="flex min-w-0 flex-1 flex-col items-center gap-0.5 py-1 text-white">
+        <Link href="/login" className="flex min-w-0 flex-1 flex-col items-center gap-0.5 py-1 text-white">
           <IconAccount className="h-6 w-6" />
           <span className="text-[10px] font-semibold uppercase tracking-wide">Account</span>
         </Link>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { CATEGORY_HAS_SUBMENU, SITE_CATEGORIES, categoryHref } from "@/lib/site-categories";
+import { CATEGORY_HAS_SUBMENU, SITE_CATEGORIES, categoryCollectionHref } from "@/lib/site-categories";
 import { useMobileMenu } from "./MobileMenuContext";
 
 function IconChevronRight({ className }: { className?: string }) {
@@ -68,7 +68,7 @@ export function MobileDrawer() {
             <div>
               <p className="text-base font-bold">Hello there!</p>
               <Link
-                href="/sign-in"
+                href="/login"
                 className="text-sm text-white/95 underline-offset-2 hover:underline"
                 onClick={closeMenu}
               >
@@ -84,7 +84,7 @@ export function MobileDrawer() {
               {SITE_CATEGORIES.map((name) => (
                 <li key={name}>
                   <Link
-                    href={categoryHref(name)}
+                    href={categoryCollectionHref(name)}
                     className="flex items-center justify-between gap-2 px-3 py-3 text-sm font-medium text-foreground active:bg-muted"
                     onClick={closeMenu}
                   >

@@ -1,4 +1,4 @@
-import { SITE_CATEGORIES, categoryHref } from "@/lib/site-categories";
+import { SITE_CATEGORIES, categoryCollectionHref } from "@/lib/site-categories";
 
 export function NavbarCategories() {
   return (
@@ -11,7 +11,7 @@ export function NavbarCategories() {
           {SITE_CATEGORIES.map((name) => (
             <li key={name}>
               <a
-                href={categoryHref(name)}
+                href={categoryCollectionHref(name)}
                 className="block whitespace-nowrap px-2 py-1 transition hover:text-accent lg:px-1"
               >
                 {name}

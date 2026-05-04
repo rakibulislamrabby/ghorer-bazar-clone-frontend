@@ -34,6 +34,23 @@ body {
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 
+/* All interactive buttons — pointer; disabled stays explicit */
+button:not(:disabled):not([aria-disabled="true"]),
+input[type="button"]:not(:disabled),
+input[type="submit"]:not(:disabled),
+input[type="reset"]:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+button:disabled,
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 /* =========================
    FIXED-WIDTH CONTENT
 ========================= */
@@ -46,7 +63,7 @@ body {
    COMPONENTS (tokens only)
 ========================= */
 .btn-primary {
-  @apply rounded-md bg-accent px-4 py-2 font-medium text-white transition hover:opacity-90;
+  @apply cursor-pointer rounded-md bg-accent px-4 py-2 font-medium text-white transition hover:opacity-90 disabled:cursor-not-allowed;
 }
 
 .navbar-categories {
