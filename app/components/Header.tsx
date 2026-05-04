@@ -119,11 +119,9 @@ export function Header() {
 
   return (
     <header className="w-full bg-card">
-      <div className="hidden h-1 w-full bg-header-strip lg:block" aria-hidden />
-
       <div className="border-b border-border">
         {/* Mobile / tablet header */}
-        <div className="container-site flex items-center gap-2 py-2.5 lg:hidden">
+        <div className="container-site flex items-center gap-2 py-2 lg:hidden">
           <button
             type="button"
             onClick={openMenu}
@@ -162,7 +160,7 @@ export function Header() {
         </div>
 
         {/* Desktop header */}
-        <div className="container-site hidden flex-col gap-4 py-3 lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-6">
+        <div className="container-site hidden flex-col gap-4 py-2 lg:flex lg:flex-row lg:items-center lg:justify-between lg:gap-6">
           <a href="/" className="inline-flex shrink-0" title="Ghorer Bazar — home">
             <Image
               src="/assets/logo/logo.png"

@@ -104,8 +104,8 @@ export function OilGheeCollection() {
   }
 
   return (
-    <div className="container-site py-6 md:py-8">
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+    <div className="container-site pb-6 pt-3 md:pb-8 md:pt-4">
+      <div className="mb-5 flex flex-col gap-3 sm:mb-6 sm:flex-row sm:items-end sm:justify-between">
         <h1 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">Oil & Ghee</h1>
         <nav className="text-sm text-muted-foreground" aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-1">
@@ -210,7 +210,7 @@ export function OilGheeCollection() {
           {isPending ? (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="h-72 animate-pulse rounded-lg border border-border bg-card" />
+                <div key={i} className="h-72 animate-pulse rounded-lg bg-muted/60" />
               ))}
             </div>
           ) : null}
