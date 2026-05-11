@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useCart } from "./CartProvider";
 import { useMobileMenu } from "./MobileMenuContext";
 
 function IconHome({ className }: { className?: string }) {
@@ -47,10 +48,9 @@ function IconAccount({ className }: { className?: string }) {
   );
 }
 
-const cartCount = 1;
-
 export function MobileBottomNav() {
   const { openMenu } = useMobileMenu();
+  const { totalQty: cartCount } = useCart();
 
   return (
     <nav

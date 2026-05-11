@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AddToCartSnapshotButton } from "@/app/components/cart/CartSnapshotButtons";
 import type { Product } from "@/lib/catalog-types";
 import { formatBdt, salePrice, savePercent } from "@/lib/format-bdt";
 
@@ -15,11 +16,18 @@ export function CollectionProductCard({ product }: Props) {
   return (
     <article className="flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition hover:shadow-md">
       <div className="relative aspect-square w-full bg-white">
-        {product.isBestSelling ? (
-          <span className="absolute left-2 top-2 z-10 rounded bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
-            Best Selling
-          </span>
-        ) : null}
+        <div className="absolute left-2 top-2 z-10 flex max-w-[55%] flex-col gap-1">
+          {product.isNew ? (
+            <span className="w-fit rounded bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+              New Arrival
+            </span>
+          ) : null}
+          {product.isBestSelling ? (
+            <span className="w-fit rounded bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+              Best Selling
+            </span>
+          ) : null}
+        </div>
         {pct != null && pct > 0 ? (
           <span className="absolute right-2 top-2 z-10 rounded bg-green-600 px-2 py-0.5 text-[10px] font-bold text-white shadow">
             Save {pct}%
@@ -45,17 +53,16 @@ export function CollectionProductCard({ product }: Props) {
           ) : null}
         </div>
 
-        <button
-          type="button"
-          className="mt-1 flex w-full items-center justify-center gap-2 rounded-md border-2 border-accent py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-white"
-        >
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-            <path d="M4 6h16l-2 12H6L4 6zM4 6L3 3H1" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="9" cy="20" r="1" fill="currentColor" />
-            <circle cx="18" cy="20" r="1" fill="currentColor" />
-          </svg>
-          Add To Cart
-        </button>
+        <AddToCartSnapshotButton
+          snapshot={{
+            productId: product.id,
+            slug: product.slug,
+            name: product.name,
+            image: img,
+            unitPriceBdt: pay,
+          }}
+          addClassName="mt-1 flex w-full items-center justify-center gap-2 rounded-md border-2 border-accent py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-white"
+        />
       </div>
     </article>
   );

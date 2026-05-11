@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default function OilGheeLayout({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-full bg-white">{children}</div>;
+  return children;
 }
