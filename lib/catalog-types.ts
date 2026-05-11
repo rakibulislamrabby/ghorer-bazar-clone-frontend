@@ -76,5 +76,9 @@ export type CatalogData = {
       types: string[];
       brands: string[];
     };
+    dates: {
+      types: string[];
+      brands: string[];
+    };
   };
 };

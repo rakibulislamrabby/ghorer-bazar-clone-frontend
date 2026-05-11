@@ -13,6 +13,7 @@ export function useCatalog() {
 
 const CAT_HONEY = "cat_1";
 const CAT_OIL_GHEE = "cat_2";
+const CAT_DATES = "cat_4";
 
 export function useHoneyProducts() {
   const q = useCatalog();
@@ -24,5 +25,11 @@ export function useOilGheeProducts() {
   const q = useCatalog();
   const products: Product[] =
     q.data?.products.filter((p) => p.categoryId === CAT_OIL_GHEE) ?? [];
+  return { ...q, products };
+}
+
+export function useDatesProducts() {
+  const q = useCatalog();
+  const products: Product[] = q.data?.products.filter((p) => p.categoryId === CAT_DATES) ?? [];
   return { ...q, products };
 }

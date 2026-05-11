@@ -29,5 +29,6 @@ export function categoryHref(name: string) {
 export function categoryCollectionHref(name: string) {
   if (name === "Oil & Ghee") return "/collections/oil-ghee";
   if (name === "Honey") return "/collections/honey";
+  if (name === "Dates") return "/collections/dates";
   return categoryHref(name);
 }

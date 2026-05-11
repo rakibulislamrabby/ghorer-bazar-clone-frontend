@@ -15,11 +15,18 @@ export function CollectionProductCard({ product }: Props) {
   return (
     <article className="flex flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition hover:shadow-md">
       <div className="relative aspect-square w-full bg-white">
-        {product.isBestSelling ? (
-          <span className="absolute left-2 top-2 z-10 rounded bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
-            Best Selling
-          </span>
-        ) : null}
+        <div className="absolute left-2 top-2 z-10 flex max-w-[55%] flex-col gap-1">
+          {product.isNew ? (
+            <span className="w-fit rounded bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+              New Arrival
+            </span>
+          ) : null}
+          {product.isBestSelling ? (
+            <span className="w-fit rounded bg-accent px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+              Best Selling
+            </span>
+          ) : null}
+        </div>
         {pct != null && pct > 0 ? (
           <span className="absolute right-2 top-2 z-10 rounded bg-green-600 px-2 py-0.5 text-[10px] font-bold text-white shadow">
             Save {pct}%

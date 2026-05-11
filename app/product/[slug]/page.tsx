@@ -7,6 +7,9 @@ import { categoryCollectionHref } from "@/lib/site-categories";
 
 type Props = { params: Promise<{ slug: string }> };
 
+/** Allow any catalog slug (e.g. new JSON rows) without rebuilding static paths first. */
+export const dynamicParams = true;
+
 export async function generateStaticParams() {
   const { products } = getCatalog();
   return products.map((p) => ({ slug: p.slug }));

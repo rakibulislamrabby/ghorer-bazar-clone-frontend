@@ -8,6 +8,8 @@ import { CollectionProductCard } from "./CollectionProductCard";
 
 export type CollectionTypeMatch = "oil-ghee" | "exact";
 
+export type PriceFilterMode = "inputs" | "slider";
+
 export type CollectionPageProps = {
   title: string;
   breadcrumbLabel: string;
@@ -18,6 +20,12 @@ export type CollectionPageProps = {
   isPending: boolean;
   isError: boolean;
   error: unknown;
+  /** Default: min/max number fields + Go */
+  priceFilterMode?: PriceFilterMode;
+  /** Upper bound for the price slider (BDT). Default 2700. */
+  priceSliderCeiling?: number;
+  /** Sidebar checkbox: only products with `isNew` */
+  showNewArrivalFilter?: boolean;
 };
 
 type SortKey = "default" | "price-asc" | "price-desc" | "name";
@@ -89,6 +97,9 @@ export function CollectionPage({
   isPending,
   isError,
   error,
+  priceFilterMode = "inputs",
+  priceSliderCeiling = 2700,
+  showNewArrivalFilter = false,
 }: CollectionPageProps) {
   const [types, setTypes] = useState<Set<string>>(() => new Set());
   const [brands, setBrands] = useState<Set<string>>(() => new Set());
@@ -97,18 +108,38 @@ export function CollectionPage({
   const [minPrice, setMinPrice] = useState<number | null>(null);
   const [maxPrice, setMaxPrice] = useState<number | null>(null);
   const [sortKey, setSortKey] = useState<SortKey>("default");
+  const [sliderMin, setSliderMin] = useState(0);
+  const [sliderMax, setSliderMax] = useState(priceSliderCeiling);
+  const [onlyNewArrival, setOnlyNewArrival] = useState(false);
 
   const filtered = useMemo(() => {
     const typeOk =
       typeMatch === "oil-ghee"
         ? (p: Product) => matchesTypeOilGhee(p, types)
         : (p: Product) => matchesTypeExact(p, types);
-    let list = products.filter(
-      (p) => typeOk(p) && matchesBrand(p, brands) && inPriceRange(p, minPrice, maxPrice),
-    );
+    const priceMin = priceFilterMode === "slider" ? sliderMin : minPrice;
+    const priceMax = priceFilterMode === "slider" ? sliderMax : maxPrice;
+    let list = products.filter((p) => {
+      if (!typeOk(p) || !matchesBrand(p, brands)) return false;
+      if (showNewArrivalFilter && onlyNewArrival && !p.isNew) return false;
+      return inPriceRange(p, priceMin, priceMax);
+    });
     list = sortProducts(list, sortKey);
     return list;
-  }, [products, types, brands, minPrice, maxPrice, sortKey, typeMatch]);
+  }, [
+    products,
+    types,
+    brands,
+    minPrice,
+    maxPrice,
+    sortKey,
+    typeMatch,
+    priceFilterMode,
+    sliderMin,
+    sliderMax,
+    showNewArrivalFilter,
+    onlyNewArrival,
+  ]);
 
   function toggle(set: Set<string>, v: string, setter: (s: Set<string>) => void) {
     const next = new Set(set);
@@ -162,33 +193,72 @@ export function CollectionPage({
           </FilterBlock>
 
           <FilterBlock title="Price">
-            <div className="flex flex-wrap items-end gap-2">
-              <label className="flex min-w-[4rem] flex-1 flex-col gap-1 text-xs text-muted-foreground">
-                min
-                <input
-                  value={minDraft}
-                  onChange={(e) => setMinDraft(e.target.value)}
-                  type="number"
-                  min={0}
-                  placeholder="0"
-                  className="rounded-md border border-border bg-muted/50 px-2 py-1.5 text-sm text-foreground outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
-                />
-              </label>
-              <label className="flex min-w-[4rem] flex-1 flex-col gap-1 text-xs text-muted-foreground">
-                max
-                <input
-                  value={maxDraft}
-                  onChange={(e) => setMaxDraft(e.target.value)}
-                  type="number"
-                  min={0}
-                  placeholder="99999"
-                  className="rounded-md border border-border bg-muted/50 px-2 py-1.5 text-sm text-foreground outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
-                />
-              </label>
-              <button type="button" onClick={applyPrice} className="btn-primary shrink-0 rounded-md px-4 py-2 text-sm font-semibold">
-                Go
-              </button>
-            </div>
+            {priceFilterMode === "slider" ? (
+              <div className="space-y-4">
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>৳{sliderMin.toLocaleString("en-BD")}</span>
+                  <span>৳{sliderMax.toLocaleString("en-BD")}</span>
+                </div>
+                <div className="space-y-3">
+                  <label className="block text-xs font-medium text-muted-foreground">
+                    Min
+                    <input
+                      type="range"
+                      min={0}
+                      max={priceSliderCeiling}
+                      value={sliderMin}
+                      onChange={(e) => {
+                        const v = Number(e.target.value);
+                        setSliderMin(Math.min(v, sliderMax));
+                      }}
+                      className="mt-1 h-2 w-full cursor-pointer accent-accent"
+                    />
+                  </label>
+                  <label className="block text-xs font-medium text-muted-foreground">
+                    Max
+                    <input
+                      type="range"
+                      min={0}
+                      max={priceSliderCeiling}
+                      value={sliderMax}
+                      onChange={(e) => {
+                        const v = Number(e.target.value);
+                        setSliderMax(Math.max(v, sliderMin));
+                      }}
+                      className="mt-1 h-2 w-full cursor-pointer accent-accent"
+                    />
+                  </label>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-wrap items-end gap-2">
+                <label className="flex min-w-[4rem] flex-1 flex-col gap-1 text-xs text-muted-foreground">
+                  min
+                  <input
+                    value={minDraft}
+                    onChange={(e) => setMinDraft(e.target.value)}
+                    type="number"
+                    min={0}
+                    placeholder="0"
+                    className="rounded-md border border-border bg-muted/50 px-2 py-1.5 text-sm text-foreground outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
+                  />
+                </label>
+                <label className="flex min-w-[4rem] flex-1 flex-col gap-1 text-xs text-muted-foreground">
+                  max
+                  <input
+                    value={maxDraft}
+                    onChange={(e) => setMaxDraft(e.target.value)}
+                    type="number"
+                    min={0}
+                    placeholder="99999"
+                    className="rounded-md border border-border bg-muted/50 px-2 py-1.5 text-sm text-foreground outline-none focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
+                  />
+                </label>
+                <button type="button" onClick={applyPrice} className="btn-primary shrink-0 rounded-md px-4 py-2 text-sm font-semibold">
+                  Go
+                </button>
+              </div>
+            )}
           </FilterBlock>
 
           <FilterBlock title="Brands">
@@ -208,6 +278,24 @@ export function CollectionPage({
               ))}
             </ul>
           </FilterBlock>
+
+          {showNewArrivalFilter ? (
+            <FilterBlock title="Product Flag">
+              <ul className="space-y-2">
+                <li>
+                  <label className="flex cursor-pointer items-center gap-2 text-sm text-foreground">
+                    <input
+                      type="checkbox"
+                      checked={onlyNewArrival}
+                      onChange={(e) => setOnlyNewArrival(e.target.checked)}
+                      className="h-4 w-4 rounded border-border text-accent focus:ring-accent"
+                    />
+                    New Arrival
+                  </label>
+                </li>
+              </ul>
+            </FilterBlock>
+          ) : null}
         </aside>
 
         <div className="min-w-0 flex-1">

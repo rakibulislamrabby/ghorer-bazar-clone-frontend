@@ -1,4 +1,5 @@
 import { FeaturedCategories } from "./components/home/FeaturedCategories";
+import { TopSellingProducts } from "./components/home/TopSellingProducts";
 import { HeroBanner } from "./components/hero/HeroBanner";
 
 export default function Home() {
@@ -6,9 +7,7 @@ export default function Home() {
     <div>
       <HeroBanner />
       <FeaturedCategories />
-      <div className="container-site py-8">
-        <p className="text-center text-muted-foreground">Home content</p>
-      </div>
+      <TopSellingProducts />
     </div>
   );
 }
