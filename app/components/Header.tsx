@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { useCart } from "./CartProvider";
 import { useMobileMenu } from "./MobileMenuContext";
 import { MoreMenuDropdown } from "./MoreMenuDropdown";
 
@@ -115,7 +116,8 @@ function MobileIconLink({
 
 export function Header() {
   const { openMenu } = useMobileMenu();
-  const cartCount = 1;
+  const { totalQty } = useCart();
+  const cartCount = totalQty;
 
   return (
     <header className="w-full bg-card">

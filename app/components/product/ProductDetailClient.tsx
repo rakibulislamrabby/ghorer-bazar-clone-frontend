@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
+import { useCart } from "@/app/components/CartProvider";
 import type { Product } from "@/lib/catalog-types";
 import { formatBdt, salePrice } from "@/lib/format-bdt";
 import type { ProductDetailSections } from "@/lib/product-detail-sections";
@@ -32,6 +34,8 @@ function collectImages(product: Product, variantIdx: number | null): string[] {
 }
 
 export function ProductDetailClient({ product, categoryName, categoryHref, sections, related }: Props) {
+  const router = useRouter();
+  const { addOrMergeLine, totalQty, subtotalBdt } = useCart();
   const [variantIdx, setVariantIdx] = useState<number | null>(
     product.variants.length > 0 ? 0 : null,
   );
@@ -61,6 +65,25 @@ export function ProductDetailClient({ product, categoryName, categoryHref, secti
       : product.stock;
 
   const maxQty = Math.max(1, stock);
+  const canPurchase = stock > 0;
+
+  const variant = variantIdx != null ? product.variants[variantIdx] : null;
+  const cartImage = images[0] ?? "/assets/logo/logo.png";
+
+  function addCurrentToCart() {
+    if (!canPurchase) return;
+    addOrMergeLine({
+      productId: product.id,
+      slug: product.slug,
+      name: product.name,
+      image: cartImage,
+      unitPriceBdt: unitPrice,
+      qty,
+      variantId: variant?.id ?? null,
+      variantLabel: variant?.label ?? null,
+      maxQty: stock,
+    });
+  }
 
   const waText = useMemo(
     () =>
@@ -234,7 +257,9 @@ export function ProductDetailClient({ product, categoryName, categoryHref, secti
               <div className="grid grid-cols-2 gap-3 sm:max-w-xl">
                 <button
                   type="button"
-                  className="flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:opacity-95"
+                  disabled={!canPurchase}
+                  onClick={addCurrentToCart}
+                  className="flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <path d="M4 6h16l-2 12H6L4 6zM4 6L3 3H1" strokeLinecap="round" strokeLinejoin="round" />
@@ -243,7 +268,12 @@ export function ProductDetailClient({ product, categoryName, categoryHref, secti
                 </button>
                 <button
                   type="button"
-                  className="rounded-lg bg-nav px-4 py-3 text-sm font-semibold text-white transition hover:opacity-95"
+                  disabled={!canPurchase}
+                  onClick={() => {
+                    addCurrentToCart();
+                    router.push("/checkout");
+                  }}
+                  className="rounded-lg bg-nav px-4 py-3 text-sm font-semibold text-white transition hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   BUY NOW
                 </button>
@@ -439,10 +469,13 @@ export function ProductDetailClient({ product, categoryName, categoryHref, secti
 
       {/* Floating widgets (reference layout) */}
       <aside className="pointer-events-none fixed bottom-6 right-4 z-[60] flex flex-col items-end gap-3">
-        <div className="pointer-events-auto flex flex-col items-center rounded-l-lg border border-accent bg-accent px-2 py-3 text-[10px] font-semibold text-white shadow-lg">
-          <span>0 items</span>
-          <span className="tabular-nums">{formatBdt(0)}</span>
-        </div>
+        <Link
+          href="/cart"
+          className="pointer-events-auto flex flex-col items-center rounded-l-lg border border-accent bg-accent px-2 py-3 text-[10px] font-semibold text-white shadow-lg transition hover:opacity-95"
+        >
+          <span>{totalQty} {totalQty === 1 ? "item" : "items"}</span>
+          <span className="tabular-nums">{formatBdt(subtotalBdt)}</span>
+        </Link>
         <a
           href={chatHref}
           target="_blank"

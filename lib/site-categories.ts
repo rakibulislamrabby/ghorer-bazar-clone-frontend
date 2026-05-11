@@ -21,8 +21,13 @@ export const CATEGORY_HAS_SUBMENU = new Set<string>([
   "Flours & Lentils",
 ]);
 
+/** URL segment for `/category/[slug]` (decode with `decodeURIComponent` when reading the param). */
+export function categoryNameToSlug(name: string) {
+  return name.toLowerCase().replace(/\s+/g, "-");
+}
+
 export function categoryHref(name: string) {
-  return `/category/${encodeURIComponent(name.toLowerCase().replace(/\s+/g, "-"))}`;
+  return `/category/${encodeURIComponent(categoryNameToSlug(name))}`;
 }
 
 /** Collection PLP routes where implemented */

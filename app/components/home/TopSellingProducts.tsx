@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AddToCartSnapshotButton, BuyNowSnapshotButton } from "@/app/components/cart/CartSnapshotButtons";
 import type { Product } from "@/lib/catalog-types";
 import { formatBdt, salePrice } from "@/lib/format-bdt";
 import { getTopSellingProducts } from "@/lib/get-catalog";
@@ -61,21 +62,26 @@ function TopSellingCard({ product }: { product: Product }) {
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <Link
-            href={href}
-            className="flex items-center justify-center gap-1 rounded-md border-2 border-accent py-2 text-center text-[11px] font-semibold text-accent transition hover:bg-accent hover:text-white sm:text-xs"
-          >
-            <svg className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <path d="M4 6h16l-2 12H6L4 6zM4 6L3 3H1" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Add To Cart
-          </Link>
-          <Link
-            href={href}
-            className="rounded-md bg-accent py-2 text-center text-[11px] font-semibold text-white transition hover:opacity-90 sm:text-xs"
-          >
-            Buy now
-          </Link>
+          <AddToCartSnapshotButton
+            snapshot={{
+              productId: product.id,
+              slug: product.slug,
+              name: product.name,
+              image: img,
+              unitPriceBdt: pay,
+            }}
+            addClassName="flex items-center justify-center gap-1 rounded-md border-2 border-accent py-2 text-center text-[11px] font-semibold text-accent transition hover:bg-accent hover:text-white sm:text-xs"
+          />
+          <BuyNowSnapshotButton
+            snapshot={{
+              productId: product.id,
+              slug: product.slug,
+              name: product.name,
+              image: img,
+              unitPriceBdt: pay,
+            }}
+            buyClassName="rounded-md bg-accent py-2 text-center text-[11px] font-semibold text-white transition hover:opacity-90 sm:text-xs"
+          />
         </div>
       </div>
     </article>
@@ -88,7 +94,7 @@ export function TopSellingProducts() {
   if (products.length === 0) return null;
 
   return (
-    <section className="bg-muted/40 py-10 md:py-12" aria-labelledby="top-selling-heading">
+    <section className="bg-page  py-10 md:py-12" aria-labelledby="top-selling-heading">
       <div className="container-site">
         <h2 id="top-selling-heading" className="mb-8 text-center text-xl font-bold text-foreground md:text-2xl">
           Top Selling Products
