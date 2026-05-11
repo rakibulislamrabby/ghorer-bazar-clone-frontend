@@ -28,5 +28,6 @@ export function categoryHref(name: string) {
 /** Collection PLP routes where implemented */
 export function categoryCollectionHref(name: string) {
   if (name === "Oil & Ghee") return "/collections/oil-ghee";
+  if (name === "Honey") return "/collections/honey";
   return categoryHref(name);
 }

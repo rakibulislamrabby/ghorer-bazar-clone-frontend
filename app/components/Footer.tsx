@@ -12,8 +12,8 @@ const informationLinks = [
 ] as const;
 
 const shopByLinks = [
-  { href: "/category/oil-ghee", label: "Oil & Ghee" },
-  { href: "/category/honey", label: "Honey" },
+  { href: "/collections/oil-ghee", label: "Oil & Ghee" },
+  { href: "/collections/honey", label: "Honey" },
   { href: "/category/dates", label: "Dates" },
   { href: "/category/spices", label: "Spices" },
   { href: "/category/nuts-seeds", label: "Nuts & Seeds" },
